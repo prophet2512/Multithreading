@@ -15,7 +15,7 @@ public class BlockingQueue {
 
     public boolean add(int item) {
         synchronized (q) {
-            if(q.size()==capacity) {
+            while(q.size()==capacity) {
                 //do something
                 try {
                     q.wait(); //adder1, adder2 (in case there are 2 threads which are in wait state)
@@ -32,7 +32,7 @@ public class BlockingQueue {
 
     public int remove() {
         synchronized (q) {
-            if(q.isEmpty()){
+            while(q.isEmpty()){
                 //do something
                 try {
                     q.wait();

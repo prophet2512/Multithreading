@@ -45,6 +45,14 @@ class Task2 implements Runnable{
     }
     @Override
     public void run() {
+        /**
+         * This is how we are going to remove the deadlock here. Since
+         * this method was trying to acquire the lock of pen, we made
+         * access to pen synchronized here.
+         */
+        /*synchronized (pen) {
+            paper.writeWithPenAndPaper(pen);
+        }*/
         paper.writeWithPenAndPaper(pen);
     }
 }

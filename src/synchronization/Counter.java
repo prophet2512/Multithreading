@@ -9,6 +9,10 @@ public class Counter {
         }
     }
 
+    public synchronized void decrement() {
+        count--;
+    }
+
     public int getCount() {
         return count;
     }

@@ -1,9 +1,9 @@
 package synchronization;
 
-public class CounterThread extends Thread{
+public class CounterIncrementThread extends Thread{
     private Counter counter;
 
-    public CounterThread(Counter counter) {
+    public CounterIncrementThread(Counter counter) {
         this.counter = counter;
     }
 

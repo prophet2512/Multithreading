@@ -1,10 +1,20 @@
 package Practice;
 
+import java.util.concurrent.locks.ReentrantLock;
+
 class SyncCounter {
     private int count = 0;
+    private final ReentrantLock lock = new ReentrantLock();
 
     public void increment() {
-        count++;
+        try {
+            lock.lock();
+            count++;
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            lock.unlock();
+        }
     }
 
     public synchronized int getCount() {
@@ -12,7 +22,7 @@ class SyncCounter {
     }
 }
 public class ThreadSafeCounter {
-    public static void main(String[] args) throws InterruptedException{
+    static void main(String[] args) throws InterruptedException{
         SyncCounter syncCounter = new SyncCounter();
         Runnable task = () -> {
             for (int i = 0; i<1000; i++){
